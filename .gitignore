@@ -1,0 +1,72 @@
+# Mac OS directory store files
+.DS_Store
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Compiler Artifacts
+*.d
+*makefile
+*.mk
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Dont ignore these files, need to push these files to GitHub
+!binapploader.o
+!binapploader_nvm3.o
+!libnvm3_CM4_gcc.a
+!libpsstore.a
+!libbluetooth.a
+!libbluetooth_mesh.a
+!libmbedtls.a
+!librail_efr32xg13_gcc_release.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.s37
+*.axf
+*.bin
+*.map
+
+# Debug files
+*.dSYM/
+
+# Release Folders
+GNU\ ARM*
+
+# Temporary files
+*~
+
+# Swap files
+*.swp
+
+# Backup files
+*.bak
+
+# settings file
+.settings
+
+# Project import result
+imported_project_report.html

@@ -125,6 +125,16 @@
 // [USART0]$
 
 // $[USART1]
+// USART1 CLK on PC8
+#define USART1_CLK_PORT                          gpioPortC
+#define USART1_CLK_PIN                           8
+#define USART1_CLK_LOC                           11
+
+// USART1 TX on PC6
+#define USART1_TX_PORT                           gpioPortC
+#define USART1_TX_PIN                            6
+#define USART1_TX_LOC                            11
+
 // [USART1]$
 
 // $[USART2]

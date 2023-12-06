@@ -91,7 +91,7 @@
 // <o SL_BTMESH_CONFIG_MAX_FRIENDSHIPS> Maximum number of Friendships allowed
 // <i> Default: 1
 // <i> Define the number of Friendships the application needs. Only applicable for friend node.
-#define SL_BTMESH_CONFIG_MAX_FRIENDSHIPS       (2)
+#define SL_BTMESH_CONFIG_MAX_FRIENDSHIPS       2
 
 // <o SL_BTMESH_CONFIG_FRIEND_MAX_SUBS_LIST> Maximum size of Friendship Subscription List.
 // <i> Default: 5

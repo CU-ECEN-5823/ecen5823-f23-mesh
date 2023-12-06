@@ -15,7 +15,7 @@ include:
 - path: ''
   file_list:
   - {path: app.h}
-sdk: {id: gecko_sdk, version: 3.2.3}
+sdk: {id: gecko_sdk, version: 3.2.9}
 toolchain_settings: []
 component:
 - {id: btmesh_event_log}

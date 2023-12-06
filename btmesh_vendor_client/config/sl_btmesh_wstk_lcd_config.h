@@ -122,7 +122,7 @@
 
 // <s.128 BTMESH_WSTK_LCD_INIT_TEXT> Text to be printed on the LCD when it is initialized.
 // <i> Text to be printed on the LCD when it is initialized
-#define BTMESH_WSTK_LCD_INIT_TEXT ""
+#define BTMESH_WSTK_LCD_INIT_TEXT "initializing"
 
 // </h>
 

@@ -45,25 +45,25 @@
 /// Unique ID (e.g. UUID or GUID) for the product this application is built for (uint8_t[16])
 #define APP_PROPERTIES_ID { 0 }
 
-KEEP_SYMBOL const ApplicationProperties_t sl_app_properties = {
-  /// @brief Magic value indicating that this is an ApplicationProperties_t struct.
-  /// Must equal @ref APPLICATION_PROPERTIES_MAGIC
-  .magic = APPLICATION_PROPERTIES_MAGIC,
-  /// Version number of this struct
-  .structVersion = APPLICATION_PROPERTIES_VERSION,
-  /// Type of signature this application is signed with
-  .signatureType = APPLICATION_SIGNATURE_NONE,
-  /// Location of the signature. Typically a pointer to the end of the application
-  .signatureLocation = 0,
-  /// Information about the application
-  .app = {
-    /// Bitfield representing type of application, e.g. @ref APPLICATION_TYPE_BLUETOOTH_APP
-    .type = APPLICATION_TYPE_BLUETOOTH_APP,
-    /// Version number for this application
-    .version = APP_PROPERTIES_VERSION,
-    /// Capabilities of this application
-    .capabilities = 0,
-    /// Unique ID (e.g. UUID or GUID) for the product this application is built for
-    .productId = APP_PROPERTIES_ID,
-  },
-};
+//KEEP_SYMBOL const ApplicationProperties_t sl_app_properties = {
+//  /// @brief Magic value indicating that this is an ApplicationProperties_t struct.
+//  /// Must equal @ref APPLICATION_PROPERTIES_MAGIC
+//  .magic = APPLICATION_PROPERTIES_MAGIC,
+//  /// Version number of this struct
+//  .structVersion = APPLICATION_PROPERTIES_VERSION,
+//  /// Type of signature this application is signed with
+//  .signatureType = APPLICATION_SIGNATURE_NONE,
+//  /// Location of the signature. Typically a pointer to the end of the application
+//  .signatureLocation = 0,
+//  /// Information about the application
+//  .app = {
+//    /// Bitfield representing type of application, e.g. @ref APPLICATION_TYPE_BLUETOOTH_APP
+//    .type = APPLICATION_TYPE_BLUETOOTH_APP,
+//    /// Version number for this application
+//    .version = APP_PROPERTIES_VERSION,
+//    /// Capabilities of this application
+//    .capabilities = 0,
+//    /// Unique ID (e.g. UUID or GUID) for the product this application is built for
+//    .productId = APP_PROPERTIES_ID,
+//  },
+//};

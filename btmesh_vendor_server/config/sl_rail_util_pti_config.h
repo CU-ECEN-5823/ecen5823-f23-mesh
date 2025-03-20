@@ -55,17 +55,31 @@
 // <<< sl:start pin_tool >>>
 // <pti signal=DOUT,(DFRAME),(DCLK)> SL_RAIL_UTIL_PTI
 // $[PTI_SL_RAIL_UTIL_PTI]
+#ifndef SL_RAIL_UTIL_PTI_PERIPHERAL             
 #define SL_RAIL_UTIL_PTI_PERIPHERAL              PTI
+#endif
 
 // PTI DOUT on PB12
+#ifndef SL_RAIL_UTIL_PTI_DOUT_PORT              
 #define SL_RAIL_UTIL_PTI_DOUT_PORT               gpioPortB
+#endif
+#ifndef SL_RAIL_UTIL_PTI_DOUT_PIN               
 #define SL_RAIL_UTIL_PTI_DOUT_PIN                12
+#endif
+#ifndef SL_RAIL_UTIL_PTI_DOUT_LOC               
 #define SL_RAIL_UTIL_PTI_DOUT_LOC                6
+#endif
 
 // PTI DFRAME on PB13
+#ifndef SL_RAIL_UTIL_PTI_DFRAME_PORT            
 #define SL_RAIL_UTIL_PTI_DFRAME_PORT             gpioPortB
+#endif
+#ifndef SL_RAIL_UTIL_PTI_DFRAME_PIN             
 #define SL_RAIL_UTIL_PTI_DFRAME_PIN              13
+#endif
+#ifndef SL_RAIL_UTIL_PTI_DFRAME_LOC             
 #define SL_RAIL_UTIL_PTI_DFRAME_LOC              6
+#endif
 
 // [PTI_SL_RAIL_UTIL_PTI]$
 

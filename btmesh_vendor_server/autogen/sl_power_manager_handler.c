@@ -5,7 +5,6 @@
 #include "app_button_press.h"
 #include "sl_bluetooth.h"
 #include "sl_iostream_init_usart_instances.h"
-#include "sl_simple_timer.h"
 
 /***************************************************************************//**
  * Check if the MCU can sleep at that time. This function is called when the system
@@ -62,9 +61,6 @@ bool sl_power_manager_is_ok_to_sleep(void)
   if (sli_bt_is_ok_to_sleep() == false) {
     ok_to_sleep = false;
   }
-  if (sli_simple_timer_is_ok_to_sleep() == false) {
-    ok_to_sleep = false;
-  }
   // Application hook
   if (app_is_ok_to_sleep() == false) {
     ok_to_sleep = false;
@@ -104,13 +100,6 @@ bool sl_power_manager_sleep_on_isr_exit(void)
   }
 
   answer = sl_iostream_usart_vcom_sleep_on_isr_exit();
-  if (answer == SL_POWER_MANAGER_WAKEUP) {
-    force_wakeup = true;
-  } else if (answer == SL_POWER_MANAGER_SLEEP) {
-    sleep = true;
-  }
-
-  answer = sli_simple_timer_sleep_on_isr_exit();
   if (answer == SL_POWER_MANAGER_WAKEUP) {
     force_wakeup = true;
   } else if (answer == SL_POWER_MANAGER_SLEEP) {

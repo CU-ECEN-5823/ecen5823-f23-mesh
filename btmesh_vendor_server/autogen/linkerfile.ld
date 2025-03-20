@@ -26,7 +26,6 @@
  * 3. This notice may not be removed or altered from any source distribution.
  *
  ******************************************************************************/
-
  MEMORY
  {
    FLASH   (rx)  : ORIGIN = 0x0, LENGTH = 0x80000
@@ -37,14 +36,6 @@ ENTRY(Reset_Handler)
 
 SECTIONS
 {
-  .text_apploader :
-  {
-    KEEP(*(.binapploader*))
-  } > FLASH
-  .text_signature :
-  {
-    . = ALIGN(2048);
-  } > FLASH
 
   .text :
   {
@@ -56,7 +47,7 @@ SECTIONS
     __Vectors_Size = __Vectors_End - __Vectors;
 
     linker_code_begin = .;
-    *(.text*)
+    *(SORT_BY_ALIGNMENT(.text*))
     linker_code_end = .;
 
     KEEP(*(.init))
@@ -91,6 +82,37 @@ SECTIONS
     *(.ARM.exidx* .gnu.linkonce.armexidx.*)
   } > FLASH
   __exidx_end = .;
+
+    .copy.table :
+  {
+    . = ALIGN(4);
+    __copy_table_start__ = .;
+
+    LONG (__etext)
+    LONG (__data_start__)
+    LONG ((__data_end__ - __data_start__) / 4)
+
+    /* Add each additional data section here */
+/*
+    LONG (__etext2)
+    LONG (__data2_start__)
+    LONG ((__data2_end__ - __data2_start__) / 4)
+*/
+    __copy_table_end__ = .;
+  } > FLASH
+
+    .zero.table :
+  {
+    . = ALIGN(4);
+    __zero_table_start__ = .;
+    /* Add each additional bss section here */
+/*
+    LONG (__bss2_start__)
+    LONG ((__bss2_end__ - __bss2_start__) / 4)
+*/
+    __zero_table_end__ = .;
+  } > FLASH
+
   __etext = .;
 
   /* Start placing output sections which are loaded into RAM */
@@ -105,6 +127,7 @@ SECTIONS
     PROVIDE(__stack = __StackTop);
   } > RAM
 
+
   .noinit . (NOLOAD):
   {
     *(.noinit*);
@@ -115,7 +138,7 @@ SECTIONS
     . = ALIGN(4);
     __data_start__ = .;
     *(vtable)
-    *(.data*)
+    *(SORT_BY_ALIGNMENT(.data*))
     . = ALIGN (4);
 
     PROVIDE(__ram_func_section_start = .);
@@ -152,7 +175,7 @@ SECTIONS
   {
     . = ALIGN(4);
     __bss_start__ = .;
-    *(.bss*)
+    *(SORT_BY_ALIGNMENT(.bss*))
     *(COMMON)
     . = ALIGN(4);
     __bss_end__ = .;
@@ -165,11 +188,11 @@ SECTIONS
     end = __end__;
     _end = __end__;
     KEEP(*(.heap*))
-    . = ORIGIN(RAM) + LENGTH(RAM);
-    __HeapLimit = .;
+    __HeapLimit = ORIGIN(RAM) + LENGTH(RAM);
   } > RAM
 
   __heap_size = __HeapLimit - __HeapBase;
+  __ram_end__ = 0x20000000 + 0x10000;
   __main_flash_end__ = 0x0 + 0x80000;
 
    /* This is where we handle flash storage blocks. We use dummy sections for finding the configured
@@ -177,6 +200,7 @@ SECTIONS
   .internal_storage (DSECT) : {
     KEEP(*(.internal_storage*))
   } > FLASH
+  
 
   .nvm (DSECT) : {
     KEEP(*(.simee*))
@@ -186,7 +210,11 @@ SECTIONS
   linker_nvm_begin = linker_nvm_end - SIZEOF(.nvm);
   linker_nvm_size = SIZEOF(.nvm);
   linker_storage_end = linker_nvm_begin;
+  __nvm3Base = linker_nvm_begin;
+
   linker_storage_begin = linker_storage_end - SIZEOF(.internal_storage);
   linker_storage_size = SIZEOF(.internal_storage);
-  __nvm3Base = linker_nvm_begin;
+  ASSERT((linker_storage_begin >= (__etext + SIZEOF(.data))), "FLASH memory overflowed !")
+
+
 }

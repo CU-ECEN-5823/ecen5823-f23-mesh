@@ -1,3 +1,33 @@
+/***************************************************************************//**
+ * @file
+ * @brief Bluetooth Mesh Stack configuration
+ *******************************************************************************
+ * # License
+ * <b>Copyright 2023 Silicon Laboratories Inc. www.silabs.com</b>
+ *******************************************************************************
+ *
+ * SPDX-License-Identifier: Zlib
+ *
+ * The licensor of this software is Silicon Laboratories Inc.
+ *
+ * This software is provided 'as-is', without any express or implied warranty.
+ * In no event will the authors be held liable for any damages arising from the
+ * use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software in a
+ *    product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ *
+ ******************************************************************************/
+
 #ifndef SL_BTMESH_CONFIG_H
 #define SL_BTMESH_CONFIG_H
 
@@ -10,7 +40,7 @@
 // <i> Define the number of application bindings allowed.
 #define SL_BTMESH_CONFIG_MAX_APP_BINDS       (4)
 
-// <o SL_BTMESH_CONFIG_MAX_SUBSCRIPTIONS> Maximum number of subscriptions allowed <0-4>
+// <o SL_BTMESH_CONFIG_MAX_SUBSCRIPTIONS> Maximum number of subscriptions allowed <0-255>
 // <i> Default: 4
 // <i> Define the number of subscriptions allowed.
 #define SL_BTMESH_CONFIG_MAX_SUBSCRIPTIONS       (4)
@@ -35,14 +65,14 @@
 // <i> Define the Replay Protection List size. Must be dividable by 16.
 #define SL_BTMESH_CONFIG_RPL_SIZE       (32)
 
-// <o SL_BTMESH_CONFIG_MAX_SEND_SEGS> Maximum number segments allowed for transmitted packets
+// <o SL_BTMESH_CONFIG_MAX_SEND_SEGS> Maximum number of simultaneous segmented transmissions
 // <i> Default: 4
-// <i> Define the maximum number segments allowed for transmitted packets. Set to a low number if not much segmentation is used
+// <i> Define the maximum number simultaneous segmented transmissions allowed. Set to a low number if not much segmentation is used.
 #define SL_BTMESH_CONFIG_MAX_SEND_SEGS       (4)
 
-// <o SL_BTMESH_CONFIG_MAX_RECV_SEGS> Maximum number segments allowed for received packets
+// <o SL_BTMESH_CONFIG_MAX_RECV_SEGS> Maximum number of simultaneous segmented receptions
 // <i> Default: 4
-// <i> Define the maximum number segments allowed for received packets. Set to a low number if not much segmentation is used.
+// <i> Define the maximum number of simultaneous segmented receptions. Set to a low number if not much segmentation is used.
 #define SL_BTMESH_CONFIG_MAX_RECV_SEGS       (4)
 
 // <o SL_BTMESH_CONFIG_MAX_VAS> Maximum number of virtual addresses
@@ -57,6 +87,16 @@
 // <i> For a provisioner the value may be over 2.
 #define SL_BTMESH_CONFIG_MAX_PROV_SESSIONS       (2)
 
+// <o SL_BTMESH_CONFIG_MAX_PROV_BEARERS> Maximum number of provisioning bearers allowed
+// <i> Default: 2
+// <i> Define the number of provisioning bearers the application needs.
+// <i> The value is 1,2 or 3.
+#if  defined(SL_CATALOG_BTMESH_STACK_RPR_SERVER_PRESENT) || defined(SL_CATALOG_BTMESH_STACK_RPR_CLIENT_PRESENT)
+#define SL_BTMESH_CONFIG_MAX_PROV_BEARERS (3)
+#else
+#define SL_BTMESH_CONFIG_MAX_PROV_BEARERS (2)
+#endif
+
 // <o SL_BTMESH_CONFIG_MAX_GATT_CONNECTIONS> Number of connections to reserve for GATT Proxies <1-2>
 // <i> Default: 2
 // <i> Set to the number of simultaneous GATT Proxy connections the application should support.
@@ -70,7 +110,7 @@
 
 // <o SL_BTMESH_CONFIG_MAX_PROVISIONED_DEVICES> Maximum number of provisioned devices allowed
 // <i> Default: 0
-// <i> Define the number of provisioned devices the application needs. Only applicable for provisioner
+// <i> Define the number of provisioned devices the application needs. Only applicable for provisioner. Please note that provisiner reserves one entry for its own data
 #define SL_BTMESH_CONFIG_MAX_PROVISIONED_DEVICES       4
 
 // <o SL_BTMESH_CONFIG_MAX_PROVISIONED_DEVICE_APPKEYS> Maximum number of Application Keys allowed for each Provisioned Device
@@ -99,14 +139,14 @@
 #define SL_BTMESH_CONFIG_FRIEND_MAX_SUBS_LIST       (5)
 
 // <o SL_BTMESH_CONFIG_FRIEND_MAX_TOTAL_CACHE> Maximum size of Total Friend Cache
-// <i> Default: 5
+// <i> Default: 4
 // <i> Define the Maximum size of Total Friend Cache. Only applicable for friend node.
-#define SL_BTMESH_CONFIG_FRIEND_MAX_TOTAL_CACHE       (5)
+#define SL_BTMESH_CONFIG_FRIEND_MAX_TOTAL_CACHE       (16)
 
 // <o SL_BTMESH_CONFIG_FRIEND_MAX_SINGLE_CACHE> Maximum size of Cache for a single Friendship
-// <i> Default: 5
+// <i> Default: 4
 // <i> Define the Maximum size of Cache for a single Friendship. Only applicable for friend node.
-#define SL_BTMESH_CONFIG_FRIEND_MAX_SINGLE_CACHE       (5)
+#define SL_BTMESH_CONFIG_FRIEND_MAX_SINGLE_CACHE       (16)
 
 // <o SL_BTMESH_CONFIG_APP_TXQ_SIZE> Access Layer TX Queue Size
 // <i> Default: 5
@@ -137,6 +177,17 @@
 // stored. For devices that do not use PSA ITS the setting is ignored.
 
 #define SL_BTMESH_CONFIG_ITS_KEY_CACHE_SIZE       (4)
+
+// <o SL_BTMESH_CONFIG_MAX_PROXY_ACCESS_CONTROL_LIST_ENTRIES> Maximum number of proxy access control list entries
+// <i> Default: 8
+// <i> Define the number of proxy access control list entries.
+#define SL_BTMESH_CONFIG_MAX_PROXY_ACCESS_CONTROL_LIST_ENTRIES  (8)
+
+// <o SL_BTMESH_CONFIG_LIMIT_PROV_CONCURRENT_KR> Maximum number of Key Refresh requests pending for the Provisioner. Uses sizeof(pointer) per
+// request statically, each pending request is dynamically allocated.
+// <i> Default: 16
+// <i> Define the maximum number of concurrent config client requests to nodes during Key Refresh
+#define SL_BTMESH_CONFIG_LIMIT_PROV_CONCURRENT_KR   (16)
 
 // </h> End Mesh Bluetooth Stack Configuration
 

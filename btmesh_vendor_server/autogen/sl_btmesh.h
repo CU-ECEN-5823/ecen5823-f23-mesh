@@ -11,8 +11,7 @@
 
 #define SL_BTMESH_COMPONENT_ADVERTISERS (3 + SL_BTMESH_CONFIG_MAX_NETKEYS)
 
-#define SL_BTMESH_FEATURE_BITMASK 7
-#define SL_BTMESH_CONFIG_MAX_PROV_BEARERS 2
+#define SL_BTMESH_FEATURE_BITMASK 6
 
 // Initialize Bluetooth core functionality
 void sl_btmesh_init(void);

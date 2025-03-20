@@ -913,7 +913,7 @@ static void parse_period(uint8_t interval)
     }
 }
 
-static sl_simple_timer_t periodic_update_timer;
+static app_timer_t periodic_update_timer;
 static void setup_periodcal_update(uint8_t interval)
 {
   app_log ("  setup_periodcal_update() interval = 0x%x\r\n", interval); // DOS
@@ -921,9 +921,9 @@ static void setup_periodcal_update(uint8_t interval)
   // DOS: There was a bug in the code whereby intervals == 0 were not stopping
   //      the timer and periodic_update_timer_cb() was continued to be called.
   if (interval == 0) {                              // DOS
-      sl_simple_timer_stop(&periodic_update_timer); // DOS: bug fix
+      app_timer_stop(&periodic_update_timer); // DOS: bug fix
   } else {                                          // DOS
-      sl_simple_timer_start(&periodic_update_timer,
+      app_timer_start(&periodic_update_timer,
                              periodic_timer_ms,
                              periodic_update_timer_cb,
                              NULL,  // pointer to callback data

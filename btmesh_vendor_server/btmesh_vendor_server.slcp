@@ -12,39 +12,33 @@ source:
 - {path: main.c}
 tag: ['hardware:rf:band:2400', 'hardware:device:flash:512', 'hardware:device:ram:32']
 include:
-- path: ''
+- path: .
   file_list:
   - {path: app.h}
-sdk: {id: gecko_sdk, version: 3.2.9}
+sdk: {id: gecko_sdk, version: 4.3.2}
 toolchain_settings: []
 component:
-- {id: btmesh_event_log}
-- {id: btmesh_feature_node}
-- {id: simple_timer}
-- {id: mpu}
-- {id: btmesh_feature_gatt_prov_bearer}
-- {id: rail_util_pti}
-- {id: btmesh_feature_relay}
-- {id: btmesh_feature_vendor_model}
-- {id: btmesh_proxy}
-- {id: sensor_rht_mock}
-- {id: btmesh_wstk_lcd}
+- {id: EFR32BG13P632F512GM48}
+- {id: app_assert}
 - {id: app_button_press}
 - {id: app_log}
-- {id: EFR32BG13P632F512GM48}
+- {id: bootloader_interface}
 - {id: brd4001a}
-- instance: [vcom]
-  id: iostream_usart
-- {id: btmesh_feature_test}
+- {id: brd4104a}
+- {id: btmesh_event_log}
 - {id: btmesh_friend}
+- {id: btmesh_proxy}
 - {id: btmesh_stack}
-- {id: si70xx_driver}
+- {id: btmesh_wstk_lcd}
+- {id: cmsis_dsp}
 - instance: [sensor]
   id: i2cspm
-- {id: ota_dfu}
-- {id: bootloader_interface}
-- {id: app_assert}
-- {id: brd4104a}
+- {id: iostream_recommended_stream}
+- {id: mpu}
+- {id: power_manager_deepsleep}
+- {id: rail_util_pti}
+- {id: sensor_rht_mock}
+- {id: si70xx_driver}
 other_file:
 - {path: create_bl_files.bat}
 - {path: create_bl_files.sh}

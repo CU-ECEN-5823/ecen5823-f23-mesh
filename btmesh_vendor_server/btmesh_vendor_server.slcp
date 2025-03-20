@@ -22,6 +22,7 @@ component:
 - {id: app_assert}
 - {id: app_button_press}
 - {id: app_log}
+- {id: app_timer}
 - {id: bootloader_interface}
 - {id: brd4001a}
 - {id: brd4104a}

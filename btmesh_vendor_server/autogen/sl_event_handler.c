@@ -15,6 +15,7 @@
 #include "sl_sleeptimer.h"
 #include "app_button_press.h"
 #include "app_log.h"
+#include "app_timer.h"
 #include "sl_bluetooth.h"
 #include "sl_btmesh_wstk_lcd.h"
 #include "sl_debug_swo.h"
@@ -90,6 +91,7 @@ void sl_platform_process_action(void)
 void sl_service_process_action(void)
 {
   app_button_press_step();
+  sli_app_timer_step();
 }
 
 void sl_stack_process_action(void)

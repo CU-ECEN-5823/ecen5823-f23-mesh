@@ -1,4 +1,4 @@
-# ecen5823-f23-mesh
+# ecen5823-mesh
 Development version - Starter code for A10.
 
 The code for this project originated from:

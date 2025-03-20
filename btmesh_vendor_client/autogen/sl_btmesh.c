@@ -1,7 +1,8 @@
 
 
-#include <em_common.h>
+#include <sl_common.h>
 #include "sl_btmesh.h"
+#include "sl_component_catalog.h"
 #include "sl_btmesh_event_log.h"
 #include "sl_btmesh_lpn.h"
 
@@ -12,8 +13,6 @@ static const struct sli_bgapi_class * const btmesh_class_table[] =
   SL_BTMESH_BGAPI_CLASS(lpn),
   SL_BTMESH_BGAPI_CLASS(proxy),
   SL_BTMESH_BGAPI_CLASS(proxy_server),
-  SL_BTMESH_BGAPI_CLASS(test),
-  SL_BTMESH_BGAPI_CLASS(vendor_model),
   SL_BTMESH_BGAPI_CLASS(node),
   NULL
 };
@@ -30,11 +29,14 @@ SL_WEAK void sl_btmesh_on_event(sl_btmesh_msg_t* evt)
 
 void sl_btmesh_process_event(sl_btmesh_msg_t *evt)
 {
-  sl_btmesh_handle_btmesh_logging_events(evt);
+  sl_btmesh_log_btmesh_events(evt);
   sl_btmesh_lpn_on_event(evt);
   sl_btmesh_on_event(evt);
 }
 
+#if !defined(SL_CATALOG_KERNEL_PRESENT)
+// When running in an RTOS, the stack events are processed in a dedicated
+// event processing task, and these functions are not used at all.
 SL_WEAK bool sl_btmesh_can_process_event(uint32_t len)
 {
   (void)(len);
@@ -59,3 +61,4 @@ void sl_btmesh_step(void)
   }
   sl_btmesh_process_event(&evt);
 }
+#endif // !defined(SL_CATALOG_KERNEL_PRESENT)

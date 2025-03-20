@@ -78,7 +78,10 @@ const mesh_memory_config_t __mesh_memory_config = {
   .friend_max_total_cache = SL_BTMESH_CONFIG_FRIEND_MAX_TOTAL_CACHE,
   .friend_max_single_cache = SL_BTMESH_CONFIG_FRIEND_MAX_SINGLE_CACHE,
   .friend_max_subs_list = SL_BTMESH_CONFIG_FRIEND_MAX_SUBS_LIST,
-  .app_send_max_queue = SL_BTMESH_CONFIG_APP_TXQ_SIZE
+  .app_send_max_queue = SL_BTMESH_CONFIG_APP_TXQ_SIZE,
+  .its_key_cache = SL_BTMESH_CONFIG_ITS_KEY_CACHE_SIZE,
+  .proxy_max_access_control_list_entries = SL_BTMESH_CONFIG_MAX_PROXY_ACCESS_CONTROL_LIST_ENTRIES,
+  .limit_prov_concurrent_kr = SL_BTMESH_CONFIG_LIMIT_PROV_CONCURRENT_KR
 };
 
 #ifdef __cplusplus

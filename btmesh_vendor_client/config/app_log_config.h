@@ -3,7 +3,7 @@
  * @brief Application logging configuration
  *******************************************************************************
  * # License
- * <b>Copyright 2021 Silicon Laboratories Inc. www.silabs.com</b>
+ * <b>Copyright 2023 Silicon Laboratories Inc. www.silabs.com</b>
  *******************************************************************************
  *
  * SPDX-License-Identifier: Zlib
@@ -38,6 +38,38 @@
 #define APP_LOG_NEW_LINE_N                    "\n"
 #define APP_LOG_NEW_LINE_R                    "\r"
 #define APP_LOG_NEW_LINE_RN                   "\r\n"
+
+#define APP_LOG_HEXDUMP_PREFIX_NONE           ""
+#define APP_LOG_HEXDUMP_PREFIX_0X_U           "0X"
+#define APP_LOG_HEXDUMP_PREFIX_0X_L           "0x"
+#define APP_LOG_HEXDUMP_PREFIX_X_U            "X"
+#define APP_LOG_HEXDUMP_PREFIX_X_L            "x"
+
+#define APP_LOG_HEXDUMP_FORMAT_PAD0_U         "%02X"
+#define APP_LOG_HEXDUMP_FORMAT_PAD0_L         "%02x"
+#define APP_LOG_HEXDUMP_FORMAT_PAD_U          "%2X"
+#define APP_LOG_HEXDUMP_FORMAT_PAD_L          "%2x"
+#define APP_LOG_HEXDUMP_FORMAT_U              "%X"
+#define APP_LOG_HEXDUMP_FORMAT_L              "%x"
+
+#define APP_LOG_SEPARATOR_NONE        ""
+#define APP_LOG_SEPARATOR_SPACE       " "
+#define APP_LOG_SEPARATOR_COMMA       ","
+#define APP_LOG_SEPARATOR_TAB         "\t"
+#define APP_LOG_SEPARATOR_DASH        "-"
+#define APP_LOG_SEPARATOR_UNDER       "_"
+#define APP_LOG_SEPARATOR_COLON       ":"
+#define APP_LOG_SEPARATOR_SEMI        ";"
+
+// APP_LOG_HEXDUMP_SEPARATOR_* macros are deprecated, use APP_LOG_SEPARATOR_* macros instead.
+#define APP_LOG_HEXDUMP_SEPARATOR_NONE        APP_LOG_SEPARATOR_NONE
+#define APP_LOG_HEXDUMP_SEPARATOR_SPACE       APP_LOG_SEPARATOR_SPACE
+#define APP_LOG_HEXDUMP_SEPARATOR_COMMA       APP_LOG_SEPARATOR_COMMA
+#define APP_LOG_HEXDUMP_SEPARATOR_TAB         APP_LOG_SEPARATOR_TAB
+#define APP_LOG_HEXDUMP_SEPARATOR_DASH        APP_LOG_SEPARATOR_DASH
+#define APP_LOG_HEXDUMP_SEPARATOR_UNDER       APP_LOG_SEPARATOR_UNDER
+#define APP_LOG_HEXDUMP_SEPARATOR_COLON       APP_LOG_SEPARATOR_COLON
+#define APP_LOG_HEXDUMP_SEPARATOR_SEMI        APP_LOG_SEPARATOR_SEMI
 
 // <e APP_LOG_ENABLE> Application Logging
 // <i> Enables Logging.
@@ -130,6 +162,69 @@
 #define APP_LOG_STREAM_INSTANCE    "vcom"
 
 // </e>
+
+// <h> Dump settings
+
+// <o APP_LOG_HEXDUMP_PREFIX> Prefix
+// <APP_LOG_HEXDUMP_PREFIX_NONE=> None
+// <APP_LOG_HEXDUMP_PREFIX_0X_U=> 0X
+// <APP_LOG_HEXDUMP_PREFIX_0X_L=> 0x
+// <APP_LOG_HEXDUMP_PREFIX_X_U=> X
+// <APP_LOG_HEXDUMP_PREFIX_X_L=> x
+// <i> Default: None
+// <i> Format string for hexdump
+#define APP_LOG_HEXDUMP_PREFIX                 APP_LOG_HEXDUMP_PREFIX_NONE
+
+// <o APP_LOG_HEXDUMP_FORMAT> Format
+// <APP_LOG_HEXDUMP_FORMAT_PAD0_U=> Uppercase with 0 padding (0F)
+// <APP_LOG_HEXDUMP_FORMAT_PAD0_L=> Lowercase with 0 padding (0f)
+// <APP_LOG_HEXDUMP_FORMAT_PAD_U=> Uppercase with padding ( F)
+// <APP_LOG_HEXDUMP_FORMAT_PAD_L=> Lowercase with padding ( f)
+// <APP_LOG_HEXDUMP_FORMAT_U=> Lowercase without padding (F)
+// <APP_LOG_HEXDUMP_FORMAT_L=> Lowercase without padding (f)
+// <i> Default: %02X
+// <i> Format string for hexdump
+#define APP_LOG_HEXDUMP_FORMAT                 APP_LOG_HEXDUMP_FORMAT_PAD0_U
+
+// <o APP_LOG_HEXDUMP_SEPARATOR>Hexdump separator
+// <APP_LOG_SEPARATOR_NONE=> None
+// <APP_LOG_SEPARATOR_SPACE=> Space ( )
+// <APP_LOG_SEPARATOR_COMMA=> Comma(,)
+// <APP_LOG_SEPARATOR_TAB=> Tab (\t)
+// <APP_LOG_SEPARATOR_DASH=> Dash (-)
+// <APP_LOG_SEPARATOR_UNDER=> Underscore (_)
+// <APP_LOG_SEPARATOR_COLON=> Colon(:)
+// <APP_LOG_SEPARATOR_SEMI=> Semicolon(;)
+// <i> Default: " "
+// <i> Separator for hexdump
+#define APP_LOG_HEXDUMP_SEPARATOR            APP_LOG_SEPARATOR_SPACE
+
+// <o APP_LOG_ARRAY_DUMP_SEPARATOR>Array Dump Separator
+// <APP_LOG_SEPARATOR_NONE=> None
+// <APP_LOG_SEPARATOR_SPACE=> Space ( )
+// <APP_LOG_SEPARATOR_COMMA=> Comma(,)
+// <APP_LOG_SEPARATOR_TAB=> Tab (\t)
+// <APP_LOG_SEPARATOR_DASH=> Dash (-)
+// <APP_LOG_SEPARATOR_UNDER=> Underscore (_)
+// <APP_LOG_SEPARATOR_COLON=> Colon(:)
+// <APP_LOG_SEPARATOR_SEMI=> Semicolon(;)
+// <i> Default: " "
+// <i> Separator for array dump
+#define APP_LOG_ARRAY_DUMP_SEPARATOR         APP_LOG_SEPARATOR_SPACE
+
+// <o APP_LOG_CUSTOM_ARRAY_DUMP_SEPARATOR>Custom Array Dump Separator
+// <APP_LOG_SEPARATOR_NONE=> None
+// <APP_LOG_SEPARATOR_SPACE=> Space ( )
+// <APP_LOG_SEPARATOR_COMMA=> Comma(,)
+// <APP_LOG_SEPARATOR_TAB=> Tab (\t)
+// <APP_LOG_SEPARATOR_DASH=> Dash (-)
+// <APP_LOG_SEPARATOR_UNDER=> Underscore (_)
+// <APP_LOG_SEPARATOR_COLON=> Colon(:)
+// <APP_LOG_SEPARATOR_SEMI=> Semicolon(;)
+// <i> Default: " "
+// <i> Separator for custom array dump
+#define APP_LOG_CUSTOM_ARRAY_DUMP_SEPARATOR   APP_LOG_SEPARATOR_SPACE
+// </h>
 
 // <e APP_LOG_PREFIX_ENABLE> Log level prefixes
 // <i> Enables for logging.

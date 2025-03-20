@@ -1,0 +1,9 @@
+#CRC Codes for initially generated config files -- do not modify!
+app_properties_config.h=-77184399
+btl_interface_cfg.h=-729572575
+dmadrv_config.h=-894158991
+glib_config.h=1320220439
+sl_debug_swo_config.h=848473986
+sl_mbedtls_config.h=-1940460892
+sl_mbedtls_device_config.h=-1083250924
+sl_rail_util_power_manager_init_config.h=-234538768

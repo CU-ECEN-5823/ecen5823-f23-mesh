@@ -26,11 +26,6 @@ component:
 - {id: brd4001a}
 - {id: brd4104a}
 - {id: btmesh_event_log}
-- {id: btmesh_feature_gatt_prov_bearer}
-- {id: btmesh_feature_node}
-- {id: btmesh_feature_relay}
-- {id: btmesh_feature_test}
-- {id: btmesh_feature_vendor_model}
 - {id: btmesh_lpn}
 - {id: btmesh_proxy}
 - {id: btmesh_stack}
@@ -38,10 +33,8 @@ component:
 - {id: cmsis_dsp}
 - {id: iostream_recommended_stream}
 - {id: mpu}
-- {id: ota_dfu}
 - {id: power_manager_deepsleep}
 - {id: rail_util_pti}
-- {id: simple_timer}
 other_file:
 - {path: create_bl_files.bat}
 - {path: create_bl_files.sh}
